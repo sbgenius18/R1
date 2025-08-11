@@ -180,7 +180,7 @@
     margin-bottom: 0px;
     font-size: 50px;
     font-weight: bold;
-    color: white;
+    color: rgb(235, 75, 75);
     font-family: 'Poppins', sans-serif;
   }
 
@@ -191,7 +191,7 @@
     border-radius: 16px;
     top: 0px;
     left: 2%;
-    width: 65%;
+    width: 95%;
   }
 
   .intro-sub,
@@ -212,20 +212,54 @@
     display: flex;
   }
 
-  .courseContainer{
+  .courseContainer {
     display: flex;
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 20px;
     flex-direction: column;
   }
-  .course-box-1,.course-box-2,.course-box-3,.course-box-4,.course-box-5,.course-box-6,.course-box-7{
+
+  .course-box-1,
+  .course-box-2,
+  .course-box-3,
+  .course-box-4,
+  .course-box-5,
+  .course-box-6,
+  .course-box-7 {
     display: flex;
-    width:100%;
-    background-color: rgba(40,40,40,0.95);
+    width: 100%;
+    background-color: rgba(40, 40, 40, 0.9);
     border-radius: 20px;
     margin-bottom: 20px;
-  
+    flex-direction: row;
+
+  }
+
+  .cb1-img,
+  .cb2-img,
+  .cb3-img,
+  .cb4-img,
+  .cb5-img,
+  .cb6-img,
+  .cb7-img {
+    height: 280px;
+    width: 280px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: white;
+    border-width: 5px;
+  }
+
+  .cb1,
+  .cb2,
+  .cb3,
+  .cb4,
+  .cb5,
+  .cb6,
+  .cb7 {
+    display: flex;
+    flex-direction: column;
   }
 
   @media (max-width: 600px) {
@@ -256,6 +290,49 @@
       background-color: rgb(34, 34, 34);
       z-index: 9999;
       justify-content: center;
+    }
+
+    .cb1-img,
+    .cb2-img,
+    .cb3-img,
+    .cb4-img,
+    .cb5-img,
+    .cb6-img,
+    .cb7-img {
+      height: 100%;
+      width: 100%;
+      border-radius: 20px;
+      border-style: solid;
+      border-color: white;
+      border-width: 10px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    .course-box-1,
+    .course-box-2,
+    .course-box-3,
+    .course-box-4,
+    .course-box-5,
+    .course-box-6,
+    .course-box-7 {
+      display: flex;
+      width: 100%;
+      background-color: rgba(40, 40, 40, 0.9);
+      border-radius: 20px;
+      margin-bottom: 20px;
+      flex-direction: column;
+    }
+
+    .cb1,
+    .cb2,
+    .cb3,
+    .cb4,
+    .cb5,
+    .cb6,
+    .cb7 {
+      display: flex;
+      flex-direction: column;
     }
   }
 
