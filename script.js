@@ -15,6 +15,9 @@ function handleClick() {
 function handleClickCourses() {
   root.render(<CoursesPage />);
 }
+function handleClickHome() {
+  root.render(<App />);
+}
 function Option_button({ name, content, clicked }) {
   return (
     <button class={name} id={name} onClick={clicked}>
@@ -33,7 +36,7 @@ function Top_bar() {
   return (
     <div class="top-bar">
       <div class="buttons-top">
-        <Option_button name="home" content="Home"></Option_button>
+        <Option_button name="home" content="Home" clicked={handleClickHome}></Option_button>
         <Option_button name="Courses" content="Courses" clicked={handleClickCourses}></Option_button>
         <Option_button name="about" content="About us"></Option_button>
         <Option_button name="login" content="Log in"></Option_button>
@@ -58,7 +61,7 @@ function Menu_bar() {
 function Home_content() {
   return (
     <div>
-      <Para name="heading" content="Rainbow Mentors LLC"></Para>
+      <Para name="heading" content="Rainbow Mentors"></Para>
       <div class="intro" id="intro">
         <Para name="intro-sub" content="At Rainbow Mentors, LLC, we believe that learning and growth have no age limit. Whether you’re a curious child, a
           busy professional, or a retired soul seeking new skills — age is no bar. With the grace of God and our Gurus, we
@@ -86,15 +89,15 @@ function Menu_button() {
     </button>
   );
 }
-function Course_view({Name,thumbnail,courseName,content}) {
+function Course_view({ indivclass, imgclass, Name, thumbnail, courseName, content }) {
   return (
     <div class={Name}>
-      <img src={thumbnail} class="cbg" height={280} width={280} style={{ borderRadius: '20px',borderRight:'0px'}}></img>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <p style={{ fontFamily: 'Poppins', color: 'white', marginTop: '0px', display: 'inline', position: 'relative', paddingTop: 10, paddingLeft: 20, fontSize: 25 }}>{courseName}</p>
-        <p style={{ fontFamily: 'Poppins', color: 'white', marginTop: '0px', display: 'inline', position: 'relative', paddingTop: 10,paddingBottom: 20, paddingLeft: 20,paddingRight:20, fontSize: 15 }}>{content}</p>
-        <button style={{fontFamily:'Poppins',fontSize:"15px",alignSelf: "flex-end", margin: '20px',marginRight: '30px',width: "120px",height:"50px",border:"none",borderRadius:"8px",color:"white",backgroundColor:"rgba(180, 44, 44, 1)"}}>
-          Enroll now !  
+      <img src={thumbnail} className={imgclass}></img>
+      <div className={indivclass}>
+        <p style={{ fontFamily: 'Poppins', color: 'white', marginTop: '0px', paddingTop: 10, paddingLeft: 20, fontSize: 25 }}>{courseName}</p>
+        <p style={{ fontFamily: 'Poppins', color: 'white', marginTop: '0px', paddingTop: 10, paddingBottom: 20, paddingLeft: 20, paddingRight: 20, fontSize: 15 }}>{content}</p>
+        <button style={{ fontFamily: 'Poppins', fontSize: "15px", alignSelf: "flex-end", margin: '20px', marginRight: '30px', width: "120px", height: "50px", border: "none", borderRadius: "8px", color: "white", backgroundColor: "rgba(180, 44, 44, 1)" }}>
+          Enroll now !
         </button>
       </div>
     </div>
@@ -117,16 +120,15 @@ function CoursesPage() {
       <Bg />
       <Top_bar />
       <div className="courseContainer">
-        <Course_view Name="course-box-1" thumbnail="assets/yoga.jpg" courseName="Yoga For all" content="Yoga for All is an inclusive course that introduces basic yoga techniques suitable for all ages and fitness levels. You’ll learn simple postures, breathing exercises, and relaxation methods to improve flexibility, strength, and mental calm. Modifications are provided to ensure everyone can participate comfortably and safely. Join us to build balance, reduce stress, and enhance overall well-being."></Course_view>
-        <Course_view Name="course-box-2" thumbnail="assets/sanskrit.png" courseName="Sanskrit Language" content="Yoga for All is an inclusive course that introduces basic yoga techniques suitable for all ages and fitness levels. You’ll learn simple postures, breathing exercises, and relaxation methods to improve flexibility, strength, and mental calm. Modifications are provided to ensure everyone can participate comfortably and safely. Join us to build balance, reduce stress, and enhance overall well-being."></Course_view>
-        <Course_view Name="course-box-3" thumbnail="assets/hindustani.png" courseName="Hindustani Music" content="Yoga for All is an inclusive course that introduces basic yoga techniques suitable for all ages and fitness levels. You’ll learn simple postures, breathing exercises, and relaxation methods to improve flexibility, strength, and mental calm. Modifications are provided to ensure everyone can participate comfortably and safely. Join us to build balance, reduce stress, and enhance overall well-being."></Course_view>
-        <Course_view Name="course-box-4" thumbnail="assets/sacred.png" courseName=" Sacred Chants & Inner Meaning" content="Yoga for All is an inclusive course that introduces basic yoga techniques suitable for all ages and fitness levels. You’ll learn simple postures, breathing exercises, and relaxation methods to improve flexibility, strength, and mental calm. Modifications are provided to ensure everyone can participate comfortably and safely. Join us to build balance, reduce stress, and enhance overall well-being."></Course_view>
-        <Course_view Name="course-box-5" thumbnail="assets/devotional.png" courseName="Devotional Music" content="Yoga for All is an inclusive course that introduces basic yoga techniques suitable for all ages and fitness levels. You’ll learn simple postures, breathing exercises, and relaxation methods to improve flexibility, strength, and mental calm. Modifications are provided to ensure everyone can participate comfortably and safely. Join us to build balance, reduce stress, and enhance overall well-being."></Course_view>
-        <Course_view Name="course-box-6" thumbnail="assets/math.png" courseName="Math (Grades 5–10)" content="Yoga for All is an inclusive course that introduces basic yoga techniques suitable for all ages and fitness levels. You’ll learn simple postures, breathing exercises, and relaxation methods to improve flexibility, strength, and mental calm. Modifications are provided to ensure everyone can participate comfortably and safely. Join us to build balance, reduce stress, and enhance overall well-being."></Course_view>
-        <Course_view Name="course-box-7" thumbnail="assets/cyber.png" courseName="Cybersecurity for All" content="Yoga for All is an inclusive course that introduces basic yoga techniques suitable for all ages and fitness levels. You’ll learn simple postures, breathing exercises, and relaxation methods to improve flexibility, strength, and mental calm. Modifications are provided to ensure everyone can participate comfortably and safely. Join us to build balance, reduce stress, and enhance overall well-being."></Course_view>
-        
+        <Course_view indivclass="cb1" imgclass="cb1-img" Name="course-box-1" thumbnail="assets/yoga.jpg" courseName="Yoga For all" content="Yoga for All is an inclusive course that introduces basic yoga techniques suitable for all ages and fitness levels. You’ll learn simple postures, breathing exercises, and relaxation methods to improve flexibility, strength, and mental calm. Modifications are provided to ensure everyone can participate comfortably and safely. Join us to build balance, reduce stress, and enhance overall well-being."></Course_view>
+        <Course_view indivclass="cb1" imgclass="cb1-img" Name="course-box-2" thumbnail="assets/sanskrit.png" courseName="Sanskrit Language" content="Yoga for All is an inclusive course that introduces basic yoga techniques suitable for all ages and fitness levels. You’ll learn simple postures, breathing exercises, and relaxation methods to improve flexibility, strength, and mental calm. Modifications are provided to ensure everyone can participate comfortably and safely. Join us to build balance, reduce stress, and enhance overall well-being."></Course_view>
+        <Course_view indivclass="cb1" imgclass="cb1-img" Name="course-box-3" thumbnail="assets/hindustani.png" courseName="Hindustani Music" content="Yoga for All is an inclusive course that introduces basic yoga techniques suitable for all ages and fitness levels. You’ll learn simple postures, breathing exercises, and relaxation methods to improve flexibility, strength, and mental calm. Modifications are provided to ensure everyone can participate comfortably and safely. Join us to build balance, reduce stress, and enhance overall well-being."></Course_view>
+        <Course_view indivclass="cb1" imgclass="cb1-img" Name="course-box-4" thumbnail="assets/sacred.png" courseName=" Sacred Chants & Inner Meaning" content="Yoga for All is an inclusive course that introduces basic yoga techniques suitable for all ages and fitness levels. You’ll learn simple postures, breathing exercises, and relaxation methods to improve flexibility, strength, and mental calm. Modifications are provided to ensure everyone can participate comfortably and safely. Join us to build balance, reduce stress, and enhance overall well-being."></Course_view>
+        <Course_view indivclass="cb1" imgclass="cb1-img" Name="course-box-5" thumbnail="assets/devotional.png" courseName="Devotional Music" content="Yoga for All is an inclusive course that introduces basic yoga techniques suitable for all ages and fitness levels. You’ll learn simple postures, breathing exercises, and relaxation methods to improve flexibility, strength, and mental calm. Modifications are provided to ensure everyone can participate comfortably and safely. Join us to build balance, reduce stress, and enhance overall well-being."></Course_view>
+        <Course_view indivclass="cb1" imgclass="cb1-img" Name="course-box-6" thumbnail="assets/math.png" courseName="Math (Grades 5–10)" content="Yoga for All is an inclusive course that introduces basic yoga techniques suitable for all ages and fitness levels. You’ll learn simple postures, breathing exercises, and relaxation methods to improve flexibility, strength, and mental calm. Modifications are provided to ensure everyone can participate comfortably and safely. Join us to build balance, reduce stress, and enhance overall well-being."></Course_view>
+        <Course_view indivclass="cb1" imgclass="cb1-img" Name="course-box-7" thumbnail="assets/cyber.png" courseName="Cybersecurity for All" content="Yoga for All is an inclusive course that introduces basic yoga techniques suitable for all ages and fitness levels. You’ll learn simple postures, breathing exercises, and relaxation methods to improve flexibility, strength, and mental calm. Modifications are provided to ensure everyone can participate comfortably and safely. Join us to build balance, reduce stress, and enhance overall well-being."></Course_view>
       </div>
-      
+
     </div>
   );
 }
