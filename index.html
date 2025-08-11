@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>React Basics</title>
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    background-color: #f4f4f7;
+    background-image: url('bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 70px;
+
+  }
+
+  .top-bar {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    top: 0px;
+    left: 0px;
+    background-color: rgb(34, 34, 34);
+    z-index: 9999;
+    justify-content: right;
+  }
+
+  .buttons-top {
+    position: absolute;
+    display: flex;
+    top: 0px;
+    height: 100%;
+  }
+
+  .home,
+  .Courses,
+  .about,
+  .login {
+    width: 100px;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    background-color: rgb(34, 34, 34);
+    color: white;
+    font-size: 16px;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+  }
+
+  .home {
+    background-color: rgb(55, 55, 55);
+  }
+
+  .home:hover,
+  .Courses:hover,
+  .about:hover,
+  .login:hover {
+    background-color: rgb(55, 65, 75);
+    transition: background-color 0.2s ease;
+  }
+
+  .home:active,
+  .Courses:active,
+  .about:active,
+  .login:active {
+    background-color: rgb(60, 70, 80);
+    transition: background-color 0.1s ease;
+  }
+
+
+  .menu {
+    position: fixed;
+    padding-left: 10px;
+    padding-right: 10px;
+    bottom: 10px;
+    right: 10px;
+    border: none;
+    background-color: rgb(34, 34, 34);
+    height: 60px;
+    border-radius: 6px;
+    z-index: 9999;
+  }
+
+  .menu:hover {
+    background-color: rgb(45, 45, 45);
+    transition: background-color 0.2s ease;
+  }
+
+  .menu:active {
+    background-color: rgb(50, 50, 50);
+    transition: background-color 0.1s ease;
+  }
+
+  .menu-bar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    right: 10px;
+    bottom: 80px;
+    width: 19%;
+    height: 310px;
+    background-color: rgb(36, 36, 36);
+    border-radius: 4px;
+    visibility: hidden;
+    z-index: 10000;
+  }
+
+  .dashboard,
+  .enrolled-courses,
+  .discussion,
+  .profile-settings,
+  .help,
+  .manage-acc {
+    user-select: none;
+    margin-left: 0px;
+    width: 98%;
+    height: 50px;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    background-color: rgb(36, 36, 36);
+    color: white;
+    border: none;
+    padding-left: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    min-width: 0px;
+    user-select: none;
+    z-index: 10001;
+  }
+
+  .dashboard:hover,
+  .enrolled-courses:hover,
+  .discussion:hover,
+  .profile-settings:hover,
+  .help:hover,
+  .manage-acc:hover {
+    background-color: rgb(46, 46, 46);
+  }
+
+  .dashboard:active,
+  .enrolled-courses:active,
+  .discussion:active,
+  .profile-settings:active,
+  .help:active,
+  .manage-acc:active {
+    background-color: rgb(56, 56, 56);
+  }
+
+  .options {
+    position: absolute;
+    top: 5px;
+  }
+
+  .bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(100%);
+    z-index: -1;
+  }
+
+  .heading {
+    position: relative;
+    text-align: center;
+    padding-top: 25px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .intro {
+    position: relative;
+    margin-top: 0px;
+    background-color: rgba(0, 0, 0, 0.0);
+    border-radius: 16px;
+    top: 0px;
+    left: 2%;
+    width: 65%;
+  }
+
+  .intro-sub,
+  .para2,
+  .para3 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: black;
+    text-align: justify;
+    font-family: 'Poppins', sans-serif;
+    font-size: 25px;
+  }
+
+  .course-list {
+    position: relative;
+    display: flex;
+  }
+
+  .course-box{
+    display: flex;
+    width:100%;
+    background-color: rgba(40,40,40,0.95);
+    border-radius: 10px;
+  
+  }
+
+  @media (max-width: 600px) {
+
+    .home,
+    .Courses,
+    .about,
+    .login {
+      width: 25vw;
+      padding: 0px;
+      margin: 0px;
+      border: none;
+      background-color: rgb(34, 34, 34);
+      color: white;
+      font-size: 16px;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+    }
+
+    .top-bar {
+      position: fixed;
+      display: flex;
+      width: 100%;
+      height: 10vh;
+      top: 0px;
+      left: 0px;
+      background-color: rgb(34, 34, 34);
+      z-index: 9999;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 1100px) {
+
+    .menu-bar {
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      right: 10px;
+      bottom: 80px;
+      width: 209px;
+      height: 310px;
+      background-color: rgb(36, 36, 36);
+      border-radius: 4px;
+      visibility: hidden;
+
+    }
+
+    .intro {
+      position: relative;
+      margin-top: 0px;
+      background-color: rgba(0, 0, 0, 0.0);
+      border-radius: 16px;
+      top: 0px;
+      left: 2%;
+      width: 96%;
+    }
+  }
+</style>
+
+<body>
+  <div class="js-container"></div>
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+  <script type="text/babel" src="script.js">
+  </script>
+</body>
+
+</html>
