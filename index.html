@@ -4,6 +4,47 @@
 <head>
   <title>React Basics</title>
 </head>
+<script type="module">
+  // Firebase core
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+
+  // Firebase Authentication
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAtA2zltGPILiTy4qPn3r8D3N9tq4ZSctQ",
+    authDomain: "rainbow-db-300be.firebaseapp.com",
+    projectId: "rainbow-db-300be",
+    storageBucket: "rainbow-db-300be.firebasestorage.app",
+    messagingSenderId: "386472135807",
+    appId: "1:386472135807:web:d65975132c3e6f6a9bc34a",
+    measurementId: "G-M8JMR1L59K"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+  // Initialize Auth
+  const auth = getAuth(app);
+
+  // Register a new user
+  async function registerUser() {
+    const email = "myemail@example.com"; // replace with your email
+    const password = "mypassword123";    // replace with your password
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log("User registered:", userCredential.user);
+    } catch (error) {
+      console.error("Error:", error.code, error.message);
+    }
+  }
+
+  // Make the function available in global scope
+  window.registerUser = registerUser;
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -262,6 +303,63 @@
     flex-direction: column;
   }
 
+  .Login-box-out {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .loginask {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    color: white;
+  }
+
+  .email,
+  .password {
+    color: white;
+    font-size: 15px;
+    background-color: rgb(30, 30, 30);
+    display: block;
+    width: 400px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+  }
+
+  .password {
+    margin-bottom: 25px;
+  }
+
+  .xzc {
+    background-color: rgba(40, 40, 40, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    transform: translateY(-90px);
+  }
+
+  .loginbutt,
+  .signupbutt {
+    background: rgb(184, 20, 20);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+  }
+
   @media (max-width: 600px) {
 
     .home,
@@ -334,6 +432,12 @@
       display: flex;
       flex-direction: column;
     }
+
+    .email,
+    .password {
+      width: 70vw;
+      height: 40px;
+    }
   }
 
   @media (max-width: 1100px) {
@@ -362,6 +466,7 @@
       left: 2%;
       width: 96%;
     }
+
   }
 </style>
 
