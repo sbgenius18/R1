@@ -1,3 +1,46 @@
+function sendJsonRequest(url, data, callback) {
+  fetch(url, {
+    method: "POST", // or "GET" if you're just requesting
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data) // skip this if using GET
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then(jsonData => {
+      // Call the callback function when data arrives
+      callback(jsonData);
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
+}
+
+// Example usage:
+sendJsonRequest("http://192.168.0.104:10000/get_data",
+  { email: "shreyasbkg@gmail.com", password: "mynameishreyas" },
+  function (responseData) {
+    console.log("Server replied:", responseData);
+  }
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
 const container = document.querySelector('.js-container');
 let state = 0;
 const root = ReactDOM.createRoot(container);
@@ -17,6 +60,9 @@ function handleClickCourses() {
 }
 function handleClickHome() {
   root.render(<App />);
+}
+function handleClickLogin() {
+  root.render(<Login />);
 }
 function Option_button({ name, content, clicked }) {
   return (
@@ -39,7 +85,7 @@ function Top_bar() {
         <Option_button name="home" content="Home" clicked={handleClickHome}></Option_button>
         <Option_button name="Courses" content="Courses" clicked={handleClickCourses}></Option_button>
         <Option_button name="about" content="About us"></Option_button>
-        <Option_button name="login" content="Log in"></Option_button>
+        <Option_button name="login" content="Log in" clicked={handleClickLogin}></Option_button>
       </div>
     </div>
   );
@@ -111,6 +157,31 @@ function App() {
       <Menu_bar />
       <Menu_button />
       <Home_content />
+    </div>
+  );
+}
+function LoginBox() {
+  return (
+    <div className="Login-box-out">
+      <div className="xzc">
+        <p className="loginask">Welcome Back !</p>
+        <input className="email" type="email" placeholder="Enter email" required></input>
+        <input className="password" type="password" placeholder="Enter password" required></input>
+        <p style={{ textAlign: "center", fontFamily: 'poppins', fontSize:'13px',marginTop:"-10px",marginBottom:"10px",color:"cyan"}}>Forgot Password ?</p>
+        <div style={{display: "flex",justifyContent: "space-between",flexDirection: "row"}}>
+          <button className="loginbutt">Log in</button>
+          <button className="signupbutt">Sign up</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+function Login() {
+  return (
+    <div className="page" id="page">
+      <Bg />
+      <Top_bar />
+      <LoginBox />
     </div>
   );
 }
