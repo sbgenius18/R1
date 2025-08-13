@@ -1,35 +1,3 @@
-function sendJsonRequest(url, data, callback) {
-  fetch(url, {
-    method: "POST", // or "GET" if you're just requesting
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data) // skip this if using GET
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then(jsonData => {
-      // Call the callback function when data arrives
-      callback(jsonData);
-    })
-    .catch(error => {
-      console.error("Error:", error);
-    });
-}
-
-// Example usage:
-sendJsonRequest("http://192.168.0.104:10000/get_data",
-  { email: "shreyasbkg@gmail.com", password: "mynameishreyas" },
-  function (responseData) {
-    console.log("Server replied:", responseData);
-  }
-);
-
-
 
 
 
@@ -204,3 +172,4 @@ function CoursesPage() {
   );
 }
 root.render(<App />);
+
