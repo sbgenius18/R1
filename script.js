@@ -66,7 +66,7 @@ function handleClickLogin() {
 }
 function handleClickLoginup() {
   root.render(<Login state="Please Wait While We Process Your Request"></Login>);
-  sendJsonRequest("http://192.168.0.104:10000/login",
+  sendJsonRequest("https://server-trial-0s5z.onrender.com/login",
     { email: document.getElementById("email").value, password: document.getElementById("password").value },
     function (responseData) {
       if (responseData.status==="successful"){
@@ -224,3 +224,4 @@ function CoursesPage() {
   );
 }
 root.render(<App />);
+
