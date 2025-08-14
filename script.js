@@ -1,3 +1,35 @@
+function sendJsonRequest(url, data, callback) {
+  fetch(url, {
+    method: "POST", // or "GET" if you're just requesting
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data) // skip this if using GET
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then(jsonData => {
+      // Call the callback function when data arrives
+      callback(jsonData);
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
+}
+
+// Example usage:
+// sendJsonRequest("http://192.168.0.104:10000/login",
+//   { email: "shreyasbkg@gmail.com", password: "DmRY117F" },
+//   function (responseData) {
+//     console.log("Server replied:", responseData);
+//   }
+// );
+
+
 
 
 
@@ -30,7 +62,26 @@ function handleClickHome() {
   root.render(<App />);
 }
 function handleClickLogin() {
-  root.render(<Login />);
+  root.render(<Login state=""></Login>);
+}
+function handleClickLoginup() {
+  root.render(<Login state="Please Wait While We Process Your Request"></Login>);
+  sendJsonRequest("http://192.168.0.104:10000/login",
+    { email: document.getElementById("email").value, password: document.getElementById("password").value },
+    function (responseData) {
+      if (responseData.status==="successful"){
+        root.render(<Login state="Login Successful"></Login>);
+        console.log("Login was successful");
+      }
+      else{
+        root.render(<Login state="Invalid Credentials"></Login>);
+        console.log("Login Failed");
+      }
+      
+    }
+  );
+}
+function handleClickSignup() {
 }
 function Option_button({ name, content, clicked }) {
   return (
@@ -128,28 +179,29 @@ function App() {
     </div>
   );
 }
-function LoginBox() {
+function LoginBox({message}) {
   return (
     <div className="Login-box-out">
       <div className="xzc">
         <p className="loginask">Welcome Back !</p>
-        <input className="email" type="email" placeholder="Enter email" required></input>
-        <input className="password" type="password" placeholder="Enter password" required></input>
-        <p style={{ textAlign: "center", fontFamily: 'poppins', fontSize:'13px',marginTop:"-10px",marginBottom:"10px",color:"cyan"}}>Forgot Password ?</p>
-        <div style={{display: "flex",justifyContent: "space-between",flexDirection: "row"}}>
-          <button className="loginbutt">Log in</button>
-          <button className="signupbutt">Sign up</button>
+        <p className="currentloginstate">{message}</p>
+        <input className="email" id="email" type="email" placeholder="Enter email" required></input>
+        <input className="password" id="password" type="password" placeholder="Enter password" required></input>
+        <p style={{ textAlign: "center", fontFamily: 'poppins', fontSize: '13px', marginTop: "-10px", marginBottom: "10px", color: "cyan" }}>Forgot Password ?</p>
+        <div style={{ display: "flex", justifyContent: "space-between", flexDirection: "row" }}>
+          <button className="loginbutt" id="loginbutt" onClick={handleClickLoginup}>Log in</button>
+          <button className="signupbutt" id="signupbutt" onClick={handleClickSignup}>Sign up</button>
         </div>
       </div>
     </div>
   );
 }
-function Login() {
+function Login({state}) {
   return (
     <div className="page" id="page">
       <Bg />
       <Top_bar />
-      <LoginBox />
+      <LoginBox message={state}></LoginBox>
     </div>
   );
 }
@@ -172,4 +224,3 @@ function CoursesPage() {
   );
 }
 root.render(<App />);
-
